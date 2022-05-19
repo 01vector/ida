@@ -1,12 +1,24 @@
 <template>
   <Align column horizontal="left" vertical="top">
-    <Text size="caption" :badge="badge" class="label"> Hello </Text>
+    <Text v-if="label" :badge="badge" size="caption" class="label">
+      Hello
+    </Text>
     <textarea
-      v-if="textarea"
+      v-if="type === 'big'"
       :placeholder="placeholder"
       class="input textarea"
     />
-    <input v-else :placeholder="placeholder" class="input" />
+    <input v-if="type === 'small'" :placeholder="placeholder" class="input" />
+    <select
+      v-if="type === 'sm-select'"
+      :class="{ 'sm-select': type }"
+      class="input"
+    >
+      <option>По умолчанию</option>
+      <option>Max</option>
+      <option>Min</option>
+      <option>Name</option>
+    </select>
   </Align>
 </template>
 
@@ -25,12 +37,16 @@ import Align from "../container/Align.vue";
       type: Boolean,
       default: false,
     },
-    textarea: {
-      type: Boolean,
-      default: false,
+    type: {
+      type: String as () => "small" | "big" | "sm-select",
+      default: "small",
     },
     placeholder: {
       type: String,
+    },
+    label: {
+      type: Boolean,
+      default: false,
     },
   },
 })
@@ -47,14 +63,19 @@ export default class Card extends Vue {}
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   resize: none;
   padding: 0.65rem 1rem;
-
-  &::placeholder {
-    font-size: $caption;
-  }
 }
 
 .label {
   display: block;
   margin-bottom: 0.25rem;
+}
+
+.sm-select {
+  color: $color-neutral;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  padding-left: 1rem;
+  padding-right: 0.625rem;
+  width: 9rem;
 }
 </style>

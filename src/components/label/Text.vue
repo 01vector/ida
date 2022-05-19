@@ -40,7 +40,7 @@ export default class Card extends Vue {}
     font-size: $header;
   }
 
-  &.size-subheder {
+  &.size-subheader {
     font-weight: 600;
     font-size: $subheader;
   }

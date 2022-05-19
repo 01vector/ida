@@ -1,13 +1,17 @@
 <template>
   <Page>
-    <Align horizontal="center">
+    <Align>
       <Text size="header"> Добавление товара </Text>
-      <Separator horizontal />
-      <Input />
-    </Align>
-    <Align :wrap="false" class="content">
-      <AddingForm />
-      <ProductsSet />
+      <Separator />
+      <Input type="sm-select" />
+      <Align :wrap="false" class="content">
+        <div>
+          <AddingForm />
+        </div>
+        <div>
+          <ProductsSet />
+        </div>
+      </Align>
     </Align>
   </Page>
 </template>

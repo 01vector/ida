@@ -15,6 +15,6 @@ export default class Card extends Vue {}
 
 .page {
   background-color: $page-background;
-  padding: 2rem;
+  padding: 1rem;
 }
 </style>

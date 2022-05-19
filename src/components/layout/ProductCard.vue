@@ -1,13 +1,12 @@
 <template>
   <Card class="item-card">
-    <img
-      src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-      alt="Product"
-      class="picture"
-    />
-    <Text size="subheader"> Hello </Text>
-    <Text size="info"> Hello hello hello helllo </Text>
-    <Text size="header"> 10 000 руб. </Text>
+    <div class="header-picture" />
+    <Text size="subheader" class="product-text"> Hello </Text>
+    <Text size="info" class="product-text description">
+      Довольно-таки интересное описание в несколько строк. Довольно-таки
+      интересное описание в несколько строк.
+    </Text>
+    <Text size="header" class="product-text"> 10 000 руб. </Text>
   </Card>
 </template>
 
@@ -29,12 +28,23 @@ export default class App extends Vue {}
 
 <style lang="scss">
 .item-card {
-  width: 100px;
-  height: 100px;
-  padding: 0;
-}
-.picture {
-  width: 150px;
-  overflow: hidden;
+  width: 20.25rem;
+  text-align: left;
+
+  > .product-text {
+    margin: 1rem;
+  }
+
+  > .description {
+    margin-bottom: 2rem;
+  }
+
+  > .header-picture {
+    background-image: url("/Users/a1/Desktop/ida/frontend/src/assets/Rectangle 30.png");
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    height: 12.5rem;
+    width: 20.75rem;
+  }
 }
 </style>

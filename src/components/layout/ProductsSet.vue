@@ -1,15 +1,28 @@
 <template>
   <Align>
-    <ProductCard> </ProductCard>
-    <Card class="card2"> </Card>
-    <Card class="card2"> </Card>
-    <Card class="card2"> </Card>
-    <Card class="card2"> </Card>
-    <Card class="card2"> </Card>
-    <Card class="card2"> </Card>
-    <Card class="card2"> </Card>
-    <Card class="card2"> </Card>
-    <Card class="card2"> </Card>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard class="product-card"> </ProductCard>
   </Align>
 </template>
 
@@ -31,11 +44,8 @@ export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-.card2 {
-  border: 1px solid black;
-  padding: 1.5rem;
-  height: 100px;
-  width: 100px;
-  margin-right: 15px;
+.product-card {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 </style>
