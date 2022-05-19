@@ -1,14 +1,10 @@
 <template>
   <Card class="form">
     <Align column horizontal="left">
-      <Text size="caption" badge class="label"> Выберите товар </Text>
-      <Input class="input" placeholder="Placeholder" />
-      <Text size="caption" badge class="label"> Ссылка </Text>
-      <Input class="input" placeholder="Placeholder" />
-      <Text size="caption" class="label"> Описание </Text>
-      <Input textarea class="input textarea" placeholder="Placeholder" />
-      <Text size="caption" badge class="label"> Цена </Text>
-      <Input class="input" placeholder="Placeholder" />
+      <Input class="input-field" placeholder="Placeholder" badge />
+      <Input class="input-field" placeholder="Placeholder" badge />
+      <Input textarea class="input-field" placeholder="Placeholder" />
+      <Input class="input-field" placeholder="Placeholder" badge />
       <Button label="Добавить товар" class="button" disabled />
     </Align>
   </Card>
@@ -19,10 +15,7 @@ import { Options, Vue } from "vue-class-component";
 import Card from "../container/Card.vue";
 import Input from "../interaction/Input.vue";
 import Align from "../container/Align.vue";
-import Text from "../label/Text.vue";
 import Button from "../interaction/Button.vue";
-import Separator from "../marker/Separator.vue";
-import Page from "../container/Page.vue";
 
 @Options({
   components: {
@@ -31,8 +24,6 @@ import Page from "../container/Page.vue";
     Align,
     Text,
     Button,
-    Separator,
-    Page,
   },
 })
 export default class AddingForm extends Vue {}
@@ -42,34 +33,30 @@ export default class AddingForm extends Vue {}
 @import "../../styles/colors.scss";
 @import "../../styles/fonts.scss";
 
-.input {
-  margin-bottom: 2rem;
-  width: 17.75rem;
-
-  &.textarea {
-    height: 6.75rem;
-    resize: none;
-  }
-
-  &::placeholder {
-    font-size: $caption;
-  }
-}
-
-.label {
-  margin-bottom: 0.25rem;
-}
-
-.align :nth-last-child(2) {
-  margin-bottom: 1.5rem;
-}
-
-.button {
-  height: 2.25rem;
-  width: 100%;
-}
-
 .form {
-  margin-top: 1rem;
+  border: 1px solid black;
+  margin-right: 5rem;
+  padding: 1.5rem;
+
+  .input-field {
+    margin-bottom: 2rem;
+
+    &::v-deep .input {
+      width: 17.75rem;
+    }
+
+    &::v-deep .textarea {
+      height: 5rem;
+    }
+  }
+
+  .label {
+    margin-bottom: 0.25rem;
+  }
+
+  .button {
+    height: 2.25rem;
+    width: 100%;
+  }
 }
 </style>

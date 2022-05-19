@@ -5,8 +5,9 @@
       <Separator horizontal />
       <Input />
     </Align>
-    <Align>
+    <Align :wrap="false" class="content">
       <AddingForm />
+      <ProductsSet />
     </Align>
   </Page>
 </template>
@@ -21,6 +22,7 @@ import Button from "./components/interaction/Button.vue";
 import Separator from "./components/marker/Separator.vue";
 import Page from "./components/container/Page.vue";
 import AddingForm from "./components/layout/AddingForm.vue";
+import ProductsSet from "./components/layout/ProductsSet.vue";
 
 @Options({
   components: {
@@ -32,6 +34,7 @@ import AddingForm from "./components/layout/AddingForm.vue";
     Separator,
     Page,
     AddingForm,
+    ProductsSet,
   },
 })
 export default class App extends Vue {}
@@ -48,5 +51,9 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $text;
+}
+
+.content {
+  margin-top: 1rem;
 }
 </style>
