@@ -1,5 +1,9 @@
 <template>
-  <button :class="{ removal: removal, disabled: disabled }" class="button">
+  <button
+    :class="{ removal: removal, disabled: !enabled }"
+    :disabled="!enabled"
+    class="button"
+  >
     <Icon v-if="removal" />
     <Text v-if="label"> {{ label }} </Text>
   </button>
@@ -24,7 +28,7 @@ import Text from "../label/Text.vue";
       type: String,
       required: false,
     },
-    disabled: {
+    enabled: {
       type: Boolean,
       default: false,
     },

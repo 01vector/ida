@@ -5,12 +5,20 @@
     </Text>
     <textarea
       v-if="type === 'big'"
+      @input="$emit('update:inputValue', inputValue)"
       :placeholder="placeholder"
       class="input textarea"
     />
-    <input v-if="type === 'small'" :placeholder="placeholder" class="input" />
+    <input
+      @input="$emit('update:inputValue', inputValue)"
+      v-model="inputValue"
+      v-if="type === 'small'"
+      :placeholder="placeholder"
+      class="input"
+    />
     <select
       v-if="type === 'sm-select'"
+      @input="$emit('update:inputValue', inputValue)"
       :class="{ 'sm-select': type }"
       class="input"
     >
@@ -48,9 +56,16 @@ import Align from "../container/Align.vue";
       type: Boolean,
       default: false,
     },
+    inputValue: {
+      type: String,
+      required: false,
+    },
   },
+  emits: ["update:inputValue"],
 })
-export default class Card extends Vue {}
+export default class Card extends Vue {
+  inputValue = "Hello";
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,32 +1,16 @@
 <template>
   <Align>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
-    <ProductCard class="product-card"> </ProductCard>
+    <ProductCard
+      v-for="product in products"
+      :key="product"
+      class="product-card"
+    >
+    </ProductCard>
   </Align>
 </template>
 
 <script lang="ts">
+import { mapActions, mapGetters } from "vuex";
 import { Options, Vue } from "vue-class-component";
 import Align from "../container/Align.vue";
 import Card from "../container/Card.vue";
@@ -38,6 +22,11 @@ import ProductCard from "./ProductCard.vue";
     Align,
     Text,
     ProductCard,
+  },
+  computed: {
+    ...mapGetters("products", {
+      products: "products",
+    }),
   },
 })
 export default class App extends Vue {}
