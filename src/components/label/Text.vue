@@ -1,63 +1,63 @@
 <template>
-  <div
-    :class="{
-      [`size-${size}`]: size,
-      [`badge`]: badge,
-    }"
-    class="text"
-  >
-    <slot default> </slot>
-  </div>
+    <div
+        :class="{
+            [`size-${size}`]: size,
+            [`badge`]: badge
+        }"
+        class="text"
+    >
+        <slot default> </slot>
+    </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from 'vue-class-component';
 
 @Options({
-  props: {
-    size: {
-      type: String as () => "header" | "subheader" | "info" | "caption",
-      default: "info",
-    },
-    badge: {
-      type: Boolean,
-      default: false,
-    },
-  },
+    props: {
+        size: {
+            type: String as () => 'header' | 'subheader' | 'info' | 'caption',
+            default: 'info'
+        },
+        badge: {
+            type: Boolean,
+            default: false
+        }
+    }
 })
 export default class Card extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/colors.scss";
-@import "../../styles/fonts.scss";
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
 
 .text {
-  color: currentColor;
+    color: currentColor;
 
-  &.size-header {
-    font-weight: 600;
-    font-size: $header;
-  }
+    &.size-header {
+        font-weight: 600;
+        font-size: $header;
+    }
 
-  &.size-subheader {
-    font-weight: 600;
-    font-size: $subheader;
-  }
+    &.size-subheader {
+        font-weight: 600;
+        font-size: $subheader;
+    }
 
-  &.size-info {
-    font-weight: 400;
-    font-size: $info;
-  }
+    &.size-info {
+        font-weight: 400;
+        font-size: $info;
+    }
 
-  &.size-caption {
-    font-weight: 400;
-    font-size: $caption;
-  }
+    &.size-caption {
+        font-weight: 400;
+        font-size: $caption;
+    }
 
-  &.badge::after {
-    content: " *";
-    color: $badge;
-  }
+    &.badge::after {
+        content: ' *';
+        color: $badge;
+    }
 }
 </style>

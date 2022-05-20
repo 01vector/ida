@@ -1,16 +1,57 @@
-import { Product } from "../store/modules/products";
+import { Product } from '../store/modules/products';
 
-export const validateForm = (product: Product): boolean | string[] => {
-  if (product.title && product.price && product.imgLink) {
-    return true;
-  } else {
-    const invalidValues: string[] = [];
-    const invalidProduct = Object(product);
+interface Form {
+    title: string | undefined;
+    imgLink: string | undefined;
+    price: number;
+}
 
-    for (const key in invalidProduct) {
-      if (!invalidProduct[key]) invalidValues.push(key);
-    }
+const emptyMessage = 'Поле обязательно для заполнения';
 
-    return invalidValues;
-  }
+const title = (value: string): string | undefined => {
+    if (value === '') return emptyMessage;
 };
+
+const img = (value: string): string | undefined => {
+    if (value === '') return emptyMessage;
+};
+
+const price = (value: string): any => {
+    if (value !== '' && isNaN(+value)) return 'Поле должно содержать число';
+    else if (value === '') return 'Поле обязательно для зполнения';
+};
+
+const button = (values: any) => {
+    if (values.title && values.price && values.imgLink) return true;
+    else return false;
+};
+
+const validateForm = () => {
+    const state: Form = {
+        title: '',
+        imgLink: '',
+        price: 0
+    };
+
+    return (target: string, value: any): any => {
+        switch (target) {
+            case 'title':
+                state.title = title(value);
+                break;
+            case 'imgLink':
+                state.imgLink = img(value);
+                break;
+            case 'price':
+                state.price = price(value);
+                break;
+            case 'button':
+                return button(value);
+            default:
+                throw new Error('Incorrect value');
+        }
+
+        return state;
+    };
+};
+
+export const validator = validateForm();
