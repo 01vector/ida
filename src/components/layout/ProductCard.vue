@@ -9,7 +9,10 @@
                 <Icon />
             </Align>
         </div>
-        <div class="header-picture" :style="{ backgroundImage: img }" />
+        <div
+            class="header-picture"
+            :style="`background-image: url(${linksFormatter(img)})`"
+        />
         <Text size="subheader" class="product-text"> {{ title }} </Text>
         <Text size="info" class="product-text description">
             {{ description }}
@@ -20,6 +23,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { linksFormatter } from '../../utils/formatter';
 import Align from '../container/Align.vue';
 import Card from '../container/Card.vue';
 import Text from '../label/Text.vue';
@@ -31,6 +35,9 @@ import Icon from '../../components/image/Icon.vue';
         Align,
         Text,
         Icon
+    },
+    methods: {
+        linksFormatter
     },
     props: ['title', 'description', 'price', 'img'],
     emits: ['remove']

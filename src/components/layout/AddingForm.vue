@@ -1,11 +1,11 @@
 <template>
     <Card class="form">
-        <form>
+        <form @keyup.enter="pushProduct({ title, img, price, description })">
             <Align column horizontal="left">
                 <Input
-                    @inputValue="(value) => (title = value)"
                     v-model="title"
                     :invalid="titleInvalid"
+                    @inputValue="(value) => (title = value)"
                     class="input-field"
                     placeholder="XSO-3000"
                     badge
@@ -122,7 +122,7 @@ export default class AddingForm extends Vue {
     }
 
     pushProduct(product: Product) {
-        this.push(product);
+        if (validator('button', this.newProductState)) this.push(product);
     }
 
     get newProductState() {
