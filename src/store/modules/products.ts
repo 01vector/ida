@@ -74,8 +74,6 @@ export default {
             commit('SAVE_STATE');
         },
         sort({ commit }, mode: string): void {
-            console.log(123);
-
             commit('BUFFER_PUSH');
             mode = mode.toLowerCase();
 

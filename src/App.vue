@@ -11,9 +11,7 @@
                     <AddingForm />
                 </div>
                 <div>
-                    <transition-group name="items" tag="div">
-                        <ProductsSet class="align-products" />
-                    </transition-group>
+                    <ProductsSet class="align-products" />
                 </div>
             </Align>
         </Align>

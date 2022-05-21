@@ -9,7 +9,7 @@
                 <Icon />
             </Align>
         </div>
-        <div class="header-picture" />
+        <div class="header-picture" :style="{ backgroundImage: img }" />
         <Text size="subheader" class="product-text"> {{ title }} </Text>
         <Text size="info" class="product-text description">
             {{ description }}

@@ -1,49 +1,51 @@
 <template>
     <Card class="form">
-        <Align column horizontal="left">
-            <Input
-                @inputValue="(value) => (title = value)"
-                v-model="title"
-                :invalid="titleInvalid"
-                class="input-field"
-                placeholder="XSO-3000"
-                badge
-                label="Наименование"
-            />
-            <Input
-                @inputValue="(value) => (img = value)"
-                v-model="img"
-                :invalid="imgInvalid"
-                class="input-field"
-                placeholder="https://img-link.com"
-                badge
-                label="Ссылка на изображение"
-            />
-            <Input
-                @inputValue="(value) => (description = value)"
-                v-model="description"
-                type="big"
-                class="input-field"
-                placeholder="Хороший фотоаппарат..."
-                label="Описание"
-            />
-            <Input
-                @inputValue="(value) => (price = value)"
-                v-model="price"
-                :invalid="priceInvalid"
-                :formatter="priceFormatter"
-                class="input-field"
-                placeholder="10.000"
-                badge
-                label="Цена"
-            />
-            <Button
-                @click="pushProduct({ title, img, price, description })"
-                label="Добавить товар"
-                class="button"
-                :enabled="buttonEnabled"
-            />
-        </Align>
+        <form>
+            <Align column horizontal="left">
+                <Input
+                    @inputValue="(value) => (title = value)"
+                    v-model="title"
+                    :invalid="titleInvalid"
+                    class="input-field"
+                    placeholder="XSO-3000"
+                    badge
+                    label="Наименование"
+                />
+                <Input
+                    @inputValue="(value) => (description = value)"
+                    v-model="description"
+                    type="big"
+                    class="input-field"
+                    placeholder="Хороший фотоаппарат..."
+                    label="Описание"
+                />
+                <Input
+                    @inputValue="(value) => (img = value)"
+                    v-model="img"
+                    :invalid="imgInvalid"
+                    class="input-field"
+                    placeholder="https://img-link.com"
+                    badge
+                    label="Ссылка на изображение"
+                />
+                <Input
+                    @inputValue="(value) => (price = value)"
+                    v-model="price"
+                    :invalid="priceInvalid"
+                    :formatter="priceFormatter"
+                    class="input-field"
+                    placeholder="10.000"
+                    badge
+                    label="Цена"
+                />
+                <Button
+                    @click="pushProduct({ title, img, price, description })"
+                    label="Добавить товар"
+                    class="button"
+                    :enabled="buttonEnabled"
+                />
+            </Align>
+        </form>
     </Card>
 </template>
 
@@ -136,7 +138,7 @@ export default class AddingForm extends Vue {
     padding: 1.5rem;
 
     .input-field {
-        margin-bottom: 1rem;
+        margin-bottom: 0.1rem;
 
         :deep(.input) {
             width: 15.75rem;

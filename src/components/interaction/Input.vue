@@ -36,7 +36,7 @@
             <option value="name">По имени</option>
         </select>
         <Text
-            :style="{ visibility: invalid }"
+            :style="{ visibility: !invalid }"
             size="caption"
             class="label invalid-label"
         >
@@ -120,7 +120,6 @@ export default class Card extends Vue {
 .label {
     display: block;
     height: 1rem;
-    margin-bottom: 0.25rem;
 }
 
 .invalid-label {
