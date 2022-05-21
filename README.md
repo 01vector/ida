@@ -5,11 +5,11 @@
   - если ссылка некорректна - вставляется стандартное изображение. 
 
 * Фильтрация:
- - Режим "По умолчанию" возвращает порядок карточек к первоначальному виду (до фильтрации)
+  - Режим "По умолчанию" возвращает порядок карточек к первоначальному виду (до фильтрации)
 
 ## Project setup
 ```
-npm install / yarn install
+npm install / yarn
 ```
 
 ### Compiles and hot-reloads for development
@@ -24,7 +24,7 @@ npm run build
 
 ### Lints and fixes files
 ```
-npm run lint
+npm run lint / yarn lint
 ```
 
 ### Customize configuration
