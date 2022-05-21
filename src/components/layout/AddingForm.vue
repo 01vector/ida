@@ -39,7 +39,14 @@
                     label="Цена"
                 />
                 <Button
-                    @click="pushProduct({ title, img, price, description })"
+                    @click="
+                        pushProduct({
+                            title,
+                            img,
+                            price,
+                            description
+                        })
+                    "
                     label="Добавить товар"
                     class="button"
                     :enabled="buttonEnabled"
