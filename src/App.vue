@@ -1,15 +1,19 @@
 <template>
     <Page>
-        <Align>
-            <Text size="header"> Добавление товара </Text>
-            <Separator />
-            <Input type="sm-select" />
+        <Align column horizontal="left">
+            <Align horizontal="left" class="header">
+                <Text size="header"> Добавление товара </Text>
+                <Separator />
+                <Input type="sm-select" @inputValue="(mode) => sort(mode)" />
+            </Align>
             <Align :wrap="false" class="content">
                 <div>
                     <AddingForm />
                 </div>
                 <div>
-                    <ProductsSet />
+                    <transition-group name="items" tag="div">
+                        <ProductsSet class="align-products" />
+                    </transition-group>
                 </div>
             </Align>
         </Align>
@@ -18,6 +22,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { mapActions, mapGetters } from 'vuex';
 import Card from './components/container/Card.vue';
 import Input from './components/interaction/Input.vue';
 import Align from './components/container/Align.vue';
@@ -39,6 +44,9 @@ import ProductsSet from './components/layout/ProductsSet.vue';
         Page,
         AddingForm,
         ProductsSet
+    },
+    methods: {
+        ...mapActions('products', ['sort'])
     }
 })
 export default class App extends Vue {}
@@ -59,5 +67,14 @@ export default class App extends Vue {}
 
 .content {
     margin-top: 1rem;
+
+    .align-products {
+        //justify-content: space-between; // гибкость
+        justify-content: start; // адекватное отображение переходных состояний
+    }
+}
+
+.header {
+    width: 100%;
 }
 </style>

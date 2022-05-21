@@ -2,34 +2,35 @@ import { Product } from '../store/modules/products';
 
 interface Form {
     title: string | undefined;
-    imgLink: string | undefined;
+    img: string | undefined;
     price: number;
 }
 
 const emptyMessage = 'Поле обязательно для заполнения';
 
 const title = (value: string): string | undefined => {
-    if (value === '') return emptyMessage;
+    if (!value) return emptyMessage;
 };
 
 const img = (value: string): string | undefined => {
-    if (value === '') return emptyMessage;
+    if (!value) return emptyMessage;
 };
 
 const price = (value: string): any => {
     if (value !== '' && isNaN(+value)) return 'Поле должно содержать число';
-    else if (value === '') return 'Поле обязательно для зполнения';
+    else if (!value) return 'Поле обязательно для зполнения';
 };
 
 const button = (values: any) => {
-    if (values.title && values.price && values.imgLink) return true;
+    if (isNaN(values.price)) return false;
+    else if (values.title && values.price && values.img) return true;
     else return false;
 };
 
 const validateForm = () => {
     const state: Form = {
         title: '',
-        imgLink: '',
+        img: '',
         price: 0
     };
 
@@ -38,8 +39,8 @@ const validateForm = () => {
             case 'title':
                 state.title = title(value);
                 break;
-            case 'imgLink':
-                state.imgLink = img(value);
+            case 'img':
+                state.img = img(value);
                 break;
             case 'price':
                 state.price = price(value);

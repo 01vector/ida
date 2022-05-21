@@ -1,35 +1,42 @@
 <template>
     <Align column horizontal="left" vertical="top">
-        <Text v-show="label" :badge="badge" size="caption" class="label">
+        <Text
+            :badge="badge"
+            :style="{ visibility: !label }"
+            size="caption"
+            class="label"
+        >
             {{ label }}
         </Text>
         <textarea
             v-if="type === 'big'"
-            @input="$emit('update:inputValue', inputValue)"
+            v-model="inputValue"
+            @input="format(formatter)"
             :placeholder="placeholder"
             class="input textarea"
         />
         <input
-            @input="$emit('update:inputValue', inputValue)"
             v-model="inputValue"
+            @input="format(formatter)"
             v-if="type === 'small'"
             :placeholder="placeholder"
             class="input"
         />
         <select
             v-if="type === 'sm-select'"
-            @input="$emit('update:inputValue', inputValue)"
+            v-model="selectBoxValue"
             :class="{ 'sm-select': type }"
+            @change="throwEmit($event)"
             class="input"
         >
-            <option>По умолчанию</option>
-            <option>Max</option>
-            <option>Min</option>
-            <option>Name</option>
+            <option disabled value="">Фильтр</option>
+            <option value="default">По умолчанию</option>
+            <option value="max">Цена max</option>
+            <option value="min">Цена min</option>
+            <option value="name">По имени</option>
         </select>
         <Text
-            v-show="invalid"
-            :badge="badge"
+            :style="{ visibility: invalid }"
             size="caption"
             class="label invalid-label"
         >
@@ -71,12 +78,30 @@ import Align from '../container/Align.vue';
         invalid: {
             type: String,
             default: ''
+        },
+        formatter: {
+            type: Function,
+            default: null
         }
     },
-    emits: ['update:inputValue']
+    emits: ['inputValue']
 })
 export default class Card extends Vue {
     inputValue = '';
+    selectBoxValue = '';
+
+    format(formatterFunction: (value: any) => string) {
+        if (formatterFunction) {
+            this.inputValue = formatterFunction(this.inputValue);
+        }
+        this.throwEmit();
+    }
+
+    throwEmit(...event: any[]) {
+        event.length > 0
+            ? this.$emit('inputValue', this.selectBoxValue)
+            : this.$emit('inputValue', this.inputValue);
+    }
 }
 </script>
 
@@ -94,11 +119,12 @@ export default class Card extends Vue {
 
 .label {
     display: block;
+    height: 1rem;
     margin-bottom: 0.25rem;
 }
 
 .invalid-label {
-    color: red;
+    color: $badge;
     margin-top: 0.25rem;
 }
 

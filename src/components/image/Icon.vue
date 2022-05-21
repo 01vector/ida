@@ -1,18 +1,10 @@
 <template>
-    <img :src="icon" class="icon" />
+    <img src="../../assets/trash.png" class="icon" />
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Vue } from 'vue-class-component';
 
-@Options({
-    props: {
-        icon: {
-            type: String,
-            default: 'httpsАF://cdn-icons-png.flaticon.com/512/1214/1214428.png'
-        }
-    }
-})
 export default class Card extends Vue {}
 </script>
 

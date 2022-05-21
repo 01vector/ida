@@ -2,8 +2,8 @@
     <Card class="form">
         <Align column horizontal="left">
             <Input
-                @update:inputValue="(value) => (name = value)"
-                v-model="name"
+                @inputValue="(value) => (title = value)"
+                v-model="title"
                 :invalid="titleInvalid"
                 class="input-field"
                 placeholder="XSO-3000"
@@ -11,8 +11,8 @@
                 label="Наименование"
             />
             <Input
-                @update:inputValue="(value) => (imgLink = value)"
-                v-model="imgLink"
+                @inputValue="(value) => (img = value)"
+                v-model="img"
                 :invalid="imgInvalid"
                 class="input-field"
                 placeholder="https://img-link.com"
@@ -20,7 +20,7 @@
                 label="Ссылка на изображение"
             />
             <Input
-                @update:inputValue="(value) => (description = value)"
+                @inputValue="(value) => (description = value)"
                 v-model="description"
                 type="big"
                 class="input-field"
@@ -28,16 +28,17 @@
                 label="Описание"
             />
             <Input
-                @update:inputValue="(value) => (price = value)"
+                @inputValue="(value) => (price = value)"
                 v-model="price"
                 :invalid="priceInvalid"
+                :formatter="priceFormatter"
                 class="input-field"
-                placeholder="10 000"
+                placeholder="10.000"
                 badge
                 label="Цена"
             />
             <Button
-                @click="pushProduct({ name, imgLink, price, description })"
+                @click="pushProduct({ title, img, price, description })"
                 label="Добавить товар"
                 class="button"
                 :enabled="buttonEnabled"
@@ -51,6 +52,7 @@ import { Options, Vue } from 'vue-class-component';
 import { mapActions, mapGetters } from 'vuex';
 import { Product } from '../../store/modules/products';
 import { validator } from '../../utils/validator';
+import { priceFormatter } from '../../utils/formatter';
 import Card from '../container/Card.vue';
 import Input from '../interaction/Input.vue';
 import Align from '../container/Align.vue';
@@ -68,15 +70,16 @@ import Button from '../interaction/Button.vue';
         ...mapGetters('products', ['products'])
     },
     methods: {
-        ...mapActions('products', ['push'])
+        ...mapActions('products', ['push']),
+        priceFormatter
     },
     watch: {
-        name(value): void {
+        title(value): void {
             this.titleInvalid = validator('title', value).title;
             this.buttonEnabled = validator('button', this.newProductState);
         },
-        imgLink(value): void {
-            this.imgInvalid = validator('imgLink', value).imgLink;
+        img(value): void {
+            this.imgInvalid = validator('img', value).img;
             this.buttonEnabled = validator('button', this.newProductState);
         },
         price(value): void {
@@ -86,8 +89,8 @@ import Button from '../interaction/Button.vue';
     }
 })
 export default class AddingForm extends Vue {
-    name!: string;
-    imgLink!: string;
+    title!: string;
+    img!: string;
     price!: string;
     description!: string;
     buttonEnabled!: boolean;
@@ -98,8 +101,8 @@ export default class AddingForm extends Vue {
 
     data(): Record<string, any> {
         return {
-            name: '',
-            imgLink: '',
+            title: '',
+            img: '',
             price: '',
             description: '',
             buttonEnabled: false,
@@ -115,9 +118,9 @@ export default class AddingForm extends Vue {
 
     get newProductState() {
         return {
-            title: this.name,
-            imgLink: this.imgLink,
-            price: parseFloat(this.price),
+            title: this.title,
+            img: this.img,
+            price: this.price,
             description: this.description
         };
     }
@@ -154,7 +157,7 @@ export default class AddingForm extends Vue {
     }
 }
 
-.nameinput {
+.titleinput {
     background-color: red;
 }
 </style>
