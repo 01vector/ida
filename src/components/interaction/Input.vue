@@ -29,11 +29,11 @@
             @change="throwEmit($event)"
             class="input"
         >
-            <option disabled value="">Фильтр</option>
-            <option value="default">По умолчанию</option>
-            <option value="max">Цена max</option>
-            <option value="min">Цена min</option>
-            <option value="name">По имени</option>
+            <option disabled value="">{{ text.filters.filter }}</option>
+            <option value="default">{{ text.filters.byDefault }}</option>
+            <option value="max">{{ text.filters.byMax }}</option>
+            <option value="min">{{ text.filters.byMin }}</option>
+            <option value="name">{{ text.filters.byName }}</option>
         </select>
         <Text
             :style="{ visibility: !invalid }"
@@ -49,6 +49,7 @@
 import { Options, Vue } from 'vue-class-component';
 import Text from '../label/Text.vue';
 import Align from '../container/Align.vue';
+import translations from '../../i18n/translations';
 
 @Options({
     components: {
@@ -89,6 +90,7 @@ import Align from '../container/Align.vue';
 export default class Card extends Vue {
     inputValue = '';
     selectBoxValue = '';
+    text = translations('ru_RU');
 
     format(formatterFunction: (value: any) => string) {
         if (formatterFunction) {

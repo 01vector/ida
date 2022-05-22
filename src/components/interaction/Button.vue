@@ -55,8 +55,14 @@ export default class Button extends Vue {}
     white-space: nowrap;
 
     &.disabled {
-        background-color: $button-background;
+        background-color: $button-deactive;
         color: $color-neutral;
+    }
+
+    &:not(.disabled) {
+        &:hover {
+            background-color: $button-hover;
+        }
     }
 
     &.removal {

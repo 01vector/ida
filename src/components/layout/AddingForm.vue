@@ -5,40 +5,42 @@
                 <Input
                     v-model="title"
                     :invalid="titleInvalid"
+                    :placeholder="i18n.inputs.productName.placeholder"
+                    :label="i18n.inputs.productName.label"
                     @inputValue="(value) => (title = value)"
                     class="input-field"
-                    placeholder="XSO-3000"
                     badge
-                    label="Наименование"
                 />
                 <Input
-                    @inputValue="(value) => (description = value)"
                     v-model="description"
+                    :placeholder="i18n.inputs.productDescription.placeholder"
+                    :label="i18n.inputs.productDescription.label"
+                    @inputValue="(value) => (description = value)"
                     type="big"
                     class="input-field"
-                    placeholder="Хороший фотоаппарат..."
-                    label="Описание"
                 />
                 <Input
-                    @inputValue="(value) => (img = value)"
                     v-model="img"
                     :invalid="imgInvalid"
+                    :placeholder="i18n.inputs.productImgLink.placeholder"
+                    :label="i18n.inputs.productImgLink.label"
+                    @inputValue="(value) => (img = value)"
                     class="input-field"
-                    placeholder="https://img-link.com"
                     badge
-                    label="Ссылка на изображение"
                 />
                 <Input
-                    @inputValue="(value) => (price = value)"
                     v-model="price"
                     :invalid="priceInvalid"
                     :formatter="priceFormatter"
+                    :placeholder="i18n.inputs.productPrice.placeholder"
+                    :label="i18n.inputs.productPrice.placeholder"
+                    @inputValue="(value) => (price = value)"
                     class="input-field"
-                    placeholder="10.000"
                     badge
-                    label="Цена"
                 />
                 <Button
+                    :label="i18n.buttons.addProduct.label"
+                    :enabled="buttonEnabled"
                     @click="
                         pushProduct({
                             title,
@@ -47,9 +49,7 @@
                             description
                         })
                     "
-                    label="Добавить товар"
                     class="button"
-                    :enabled="buttonEnabled"
                 />
             </Align>
         </form>
@@ -66,6 +66,8 @@ import Card from '../container/Card.vue';
 import Input from '../interaction/Input.vue';
 import Align from '../container/Align.vue';
 import Button from '../interaction/Button.vue';
+import translations from '../../i18n/translations';
+import i18n from '../../i18n/i18n';
 
 @Options({
     components: {
@@ -107,6 +109,7 @@ export default class AddingForm extends Vue {
     imgInvalid!: string;
     priceInvalid!: string;
     push!: (product: Product) => boolean;
+    i18n!: i18n;
 
     data(): Record<string, any> {
         return {
@@ -117,7 +120,8 @@ export default class AddingForm extends Vue {
             buttonEnabled: false,
             titleInvalid: '',
             imgInvalid: '',
-            priceInvalid: ''
+            priceInvalid: '',
+            i18n: translations('ru_RU')
         };
     }
 
@@ -163,10 +167,7 @@ export default class AddingForm extends Vue {
     .button {
         height: 2.25rem;
         width: 100%;
+        transition: background-color 0.2s;
     }
-}
-
-.titleinput {
-    background-color: red;
 }
 </style>

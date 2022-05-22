@@ -1,24 +1,23 @@
-import { Product } from '../store/modules/products';
+import translations from '../i18n/translations';
 
+const text = translations('ru_RU');
 interface Form {
     title: string | undefined;
     img: string | undefined;
     price: number;
 }
 
-const emptyMessage = 'Поле обязательно для заполнения';
-
 const title = (value: string): string | undefined => {
-    if (!value) return emptyMessage;
+    if (!value) return text?.invalids.emptyField;
 };
 
 const img = (value: string): string | undefined => {
-    if (!value) return emptyMessage;
+    if (!value) return text?.invalids.emptyField;
 };
 
 const price = (value: string): any => {
-    if (value !== '' && isNaN(+value)) return 'Поле должно содержать число';
-    else if (!value) return 'Поле обязательно для зполнения';
+    if (value !== '' && isNaN(+value)) return text?.invalids.numberField;
+    else if (!value) return text?.invalids.emptyField;
 };
 
 const button = (values: any) => {
