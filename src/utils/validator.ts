@@ -4,7 +4,7 @@ const text = translations('ru_RU');
 interface Form {
     title: string | undefined;
     img: string | undefined;
-    price: number;
+    price: 0;
 }
 
 const title = (value: string): string | undefined => {
@@ -20,20 +20,20 @@ const price = (value: string): any => {
     else if (!value) return text?.invalids.emptyField;
 };
 
-const button = (values: any) => {
+const button = (values: any): boolean => {
     if (isNaN(values.price)) return false;
     else if (values.title && values.price && values.img) return true;
     else return false;
 };
 
-const validateForm = () => {
+const validateForm = (): any => {
     const state: Form = {
         title: '',
         img: '',
         price: 0
     };
 
-    return (target: string, value: any): any => {
+    return (target: string, value: any) => {
         switch (target) {
             case 'title':
                 state.title = title(value);

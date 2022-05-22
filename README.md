@@ -9,7 +9,7 @@
 
 ## Project setup
 ```
-npm install / yarn install
+npm install / yarn
 ```
 
 ### Compiles and hot-reloads for development
@@ -24,7 +24,7 @@ npm run build
 
 ### Lints and fixes files
 ```
-npm run lint
+npm run lint / yarn lint
 ```
 
 ### Customize configuration

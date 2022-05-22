@@ -92,14 +92,14 @@ export default class Card extends Vue {
     selectBoxValue = '';
     text = translations('ru_RU');
 
-    format(formatterFunction: (value: any) => string) {
+    format(formatterFunction: (value: string) => string) {
         if (formatterFunction) {
             this.inputValue = formatterFunction(this.inputValue);
         }
         this.throwEmit();
     }
 
-    throwEmit(...event: any[]) {
+    throwEmit(...event: string[]) {
         event.length > 0
             ? this.$emit('inputValue', this.selectBoxValue)
             : this.$emit('inputValue', this.inputValue);

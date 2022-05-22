@@ -126,7 +126,7 @@ export default class AddingForm extends Vue {
     }
 
     pushProduct(product: Product) {
-        if (validator('button', this.newProductState)) this.push(product);
+        if (this.buttonEnabled) this.push(product);
     }
 
     get newProductState() {
